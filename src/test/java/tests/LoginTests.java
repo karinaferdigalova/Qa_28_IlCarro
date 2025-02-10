@@ -1,35 +1,67 @@
 package tests;
 
-import org.openqa.selenium.By;
+import models.User;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
 
     @BeforeMethod
-    public void preCondition() {
-        //if SignOut present --->logout
-        if (app.getHelperUser().isLogged())
+    public void preCondition(){
+        if (app.getHelperUser().isLogged()){
             app.getHelperUser().logout();
+        }
     }
-
 
     @Test
     public void loginSuccess() {
-        app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginRegistrationForm("karinmc9@mail.ru", "Rfhbyrf29$");
-        app.getHelperUser().sumitLogin();
-        //Assert
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm("karinmc9@mail.ru", "Rfhbyrf29$");
+        app.getHelperUser().submitLogin();
+        //Assert if element with text "Logged in success" is present
+        Assert.assertEquals(app.getHelperUser().getMessage(),"Logged in success");
+        //app.getHelperUser().clickOKButton();
+    }
 
-        Assert.assertTrue(app.getHelperUser().isLogged());
+    @Test
+    public void loginSuccess1() {
+        User user = new User().setEmail("karinmc9@mail.ru").setPassword("Rfhbyrf29$");
+
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm(user);
+        app.getHelperUser().submitLogin();
+        Assert.assertEquals(app.getHelperUser().getMessage(),"Logged in success");
+
     }
 
     @Test
     public void loginSuccessModel() {
-        app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginRegistrationForm("karinmc9@mail.ru", "Rfhbyrf29$");
-        app.getHelperUser().sumitLogin();
-        Assert.assertTrue(app.getHelperUser().isLogged());
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm("karinmc9@mail.ru", "Rfhbyrf29$");
+        app.getHelperUser().submitLogin();
+        Assert.assertEquals(app.getHelperUser().getMessage(),"Logged in success");
+
     }
+
+    @Test
+    public void loginWrongEmail() {
+        User user = new User().setEmail("marmnagmail.com").setPassword("Mmar123956$");
+
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm(user);
+        app.getHelperUser().submitLogin();
+        //Assert.assertEquals(app.getHelperUser().getMessage(),"Logged in success");
+
+    }
+
+    @AfterMethod
+    public void postCondition(){
+        app.getHelperUser().clickOKButton();
+    }
+
 }
+
+
+
