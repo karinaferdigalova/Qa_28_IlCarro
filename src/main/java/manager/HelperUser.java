@@ -83,4 +83,3 @@ return wd.findElement(By.cssSelector("div.error")).getText();
 }
 
 
-}
