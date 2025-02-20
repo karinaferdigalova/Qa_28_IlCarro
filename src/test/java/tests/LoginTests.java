@@ -33,7 +33,7 @@ public class LoginTests extends TestBase {
         app.getHelperUser().fillLoginForm(user);
         app.getHelperUser().submit();
         Assert.assertEquals(app.getHelperUser().getMessage(), "Logged in success");
-        app.getHelperUser().clickOKButton();
+        app.getHelperUser().clickOkButton();
     }
 
     @Test
@@ -98,7 +98,7 @@ public class LoginTests extends TestBase {
 
     @AfterMethod
     public void postCondition(){
-        app.getHelperUser().clickOKButton();
+        app.getHelperUser().clickOkButton();
     }
 
 }
