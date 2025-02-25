@@ -1,7 +1,10 @@
 package tests;
 
+import manager.HelperCar;
 import models.Car;
 import models.User;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -25,13 +28,25 @@ public class AddNewCarTests extends TestBase {
                 .fuel("Petrol")
                 .seats(4)
                 .carClass("C")
-                .carRegNum("678-900-" + i)
+                .carRegNum("678-800-" + i)
                 .price(50)
                 .about("My car")
                 .build();
 
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
-        app.getHelperCar().submitCarForm();
+        app.getHelperCar().attachPhoto("/Users/karina/Documents/Qa_28/Qa_28_IlCarro/1920x.jpg");
+        app.getHelperCar().submit();
+       Assert.assertTrue(app.getHelperCar().getMessage().contains("added successful"));
+       Assert.assertEquals(app.getHelperCar().getMessage(),car.getManufacture()+" "+car.getModel()
+       + " added successful" );
+
+
     }
-}
+    @AfterMethod
+    public void postCondition(){
+        app.getHelperCar().returnToHomePage();
+
+        }
+    }
+

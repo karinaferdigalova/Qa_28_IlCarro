@@ -30,13 +30,7 @@ public class HelperUser extends HelperBase {
         click(By.xpath("//button[@type='submit']"));
     }
 
-    public String getMessage() {
-//        WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
-//        String text = element.getText();
-//        return text;
-        //pause(2000);
-        return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
-    }
+
     public void clickOkButton() {
         if (isElementPresent(By.xpath("//button[text()='Ok']")))
             click(By.xpath("//button[text()='Ok']"));
@@ -102,4 +96,7 @@ public class HelperUser extends HelperBase {
         submit();
         clickOkButton();
     }
+
+
+
 }

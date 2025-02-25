@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Collection;
+
 public class HelperCar extends HelperBase{
 
     public HelperCar(WebDriver wd) {
@@ -23,6 +25,12 @@ public class HelperCar extends HelperBase{
         type(By.id("year"), car.getYear());
         select(By.id("fuel"),car.getFuel());
         type(By.id("seats"),String.valueOf(car.getSeats()));
+        type(By.id("class"), car.getCarClass());
+        type(By.id("serialNumber"),car.getCarRegNum());
+//        type(By.id("price"),String.valueOf(car.getPrice()));
+        type(By.id("price"),car.getPrice()+"");
+        type(By.id("about"), car.getAbout());
+
     }
 
     private void select(By locator, String option) {
@@ -38,6 +46,13 @@ public class HelperCar extends HelperBase{
         click(By.cssSelector("div.pac-item"));
     }
 
-    public void submitCarForm() {
+
+    public void returnToHomePage() {
+        click(By.xpath("//button[text()='Search cars']"));
+
+    }
+
+    public void attachPhoto(String link) {
+        wd.findElement(By.id("photos")).sendKeys(link);
     }
 }
