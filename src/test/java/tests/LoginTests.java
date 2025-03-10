@@ -47,6 +47,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginWrongEmail(){
+        System.setProperty("webdriver.chrome.driver", "/usr/local/tools/chromedriver");
         User user = new User().setEmail("margagmail.com").setPassword("Mmar123456$");
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm(user);

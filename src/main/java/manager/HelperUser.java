@@ -46,6 +46,7 @@ public class HelperUser extends HelperBase {
     }
 
     public String getErrorText() {
+
         return wd.findElement(By.cssSelector("div.error")).getText();
     }
 
