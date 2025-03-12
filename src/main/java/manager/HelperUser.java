@@ -3,6 +3,10 @@ package manager;
 import models.User;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HelperUser extends HelperBase {
 
@@ -22,7 +26,13 @@ public class HelperUser extends HelperBase {
     }
 
     public void fillLoginForm(User user) {
+        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
+        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
+        emailField.click();
         type(By.id("email"), user.getEmail());
+
+        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.id("password")));
+        emailField.click();
         type(By.id("password"), user.getPassword());
     }
 
