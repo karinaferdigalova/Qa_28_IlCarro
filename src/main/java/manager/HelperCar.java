@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static jdk.nashorn.internal.objects.NativeJava.type;
+import static org.openqa.selenium.devtools.v119.debugger.Debugger.pause;
+
 public class HelperCar extends HelperBase {
     public HelperCar(WebDriver wd) {
         super(wd);

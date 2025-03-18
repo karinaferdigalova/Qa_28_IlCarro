@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static jdk.nashorn.internal.objects.NativeJava.type;
+
 public class HelperUser extends HelperBase {
 
 
